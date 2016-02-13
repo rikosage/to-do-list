@@ -35,7 +35,7 @@ class TaskController extends Controller
     }
     else
     {
-      return json_encode($model->errors);
+      return $this->render('error', ["errors"=>$model->errors]);
     }
   }
 

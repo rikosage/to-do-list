@@ -75,7 +75,6 @@ $(document).ready(function(){
       {
         $(this).hide();
         $(this).find(".change-button").hide();
-        $(this).find(".delete-button").hide();
       }
   });
 
