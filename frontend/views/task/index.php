@@ -1,7 +1,16 @@
 <?php $this->title = "All Tasks" ?>
 
 <div class="row">
-  <div class="col-lg-6 col-lg-offset-3 add-container"></div>
+  <div class="col-lg-6 col-lg-offset-3 add-container">
+    <form action="/task/post" method = "post">
+      <div class="text-center"><h2>Добавить новое дело</h2></div>
+      <label>Введите название</label>
+      <input type="text" name = "title" class = "new-title form-control">
+      <label>Введите текст напоминания</label>
+      <textarea name = "text" class = "new-text form-control" rows="5"></textarea>
+      <button type = "submit" class="btn btn-success add-new-task">Добавить</button>
+    </form>
+  </div>
 </div>
 <div class="row">
   <div class="col-lg-6 col-lg-offset-3 tasks-container">

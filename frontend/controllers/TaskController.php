@@ -40,7 +40,7 @@ class TaskController extends Controller
     }
     else
     {
-      print_r($model->errors);
+      json_encode($model->errors);
     }
     
   }

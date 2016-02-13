@@ -15,7 +15,7 @@ class TaskModel extends Model
   public function rules()
   {
     return [
-      [ ['title'],'string', 'length' => [5, 10]], 
+      [ ['title'],'string', 'length' => [5, 30]], 
       [ ['text'], 'string', 'min' => 10],
     ];
   }
@@ -34,15 +34,12 @@ class TaskModel extends Model
 
   public function addNewTask()
   {
-    /*$this->title = $post['title'];
-    $this->text  = $post['text'];
     $data = Yii::$app->db->createCommand()->insert('tasks',[
-      'title'   => $post['title'],
-      'text'    => $post['text'],
+      'title'   => $this->title,
+      'text'    => $this->text,
       'active'  => true,
       'date'    => date('Y-m-d H:i:s'),
-    ])->execute();*/
-    echo $this->title;
+    ])->execute();
   }
 }
 
