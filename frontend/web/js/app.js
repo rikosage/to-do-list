@@ -4,7 +4,15 @@ function showWarning(warning)
 }
 
 $(document).ready(function(){
-  $('.add-new-task').click(function(){
-    addNewTask();
+  $(".task").each(function(){
+    if ($(this).hasClass("non-active"))
+      {
+        $(this).hide();
+      }
   });
+
+  $(".show-hidden").click(function(){
+    $('.non-active').show();
+    return false;
+  })
 });

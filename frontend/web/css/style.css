@@ -54,7 +54,7 @@ textarea.change-task-text{
   margin-bottom: 10px;
 }
 
-.update-container div{
+.update-container button{
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -71,4 +71,9 @@ textarea.change-task-text{
 .add-new-task{
   margin-top: 5px;
   width: 20%;
+}
+
+.show-hidden{
+  margin-top: 5px;
+  float: right;
 }
