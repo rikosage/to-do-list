@@ -27,11 +27,6 @@ class TaskController extends Controller
 
   public function actionNew()
   {
-    return $this->render('new');
-  }
-
-  public function actionPost()
-  {
     $model = new TaskModel($_POST);
     if ($model->validate())
     {
@@ -40,9 +35,8 @@ class TaskController extends Controller
     }
     else
     {
-      print_r($model->errors);
+      return json_encode($model->errors);
     }
-    
   }
 
   public function actionChange()
@@ -50,12 +44,19 @@ class TaskController extends Controller
     $model = new TaskModel($_POST);
     if ($model->validate())
     {
-     $result = $model->changeTask();
+     $model->changeTask();
     }
     else
     {
-     echo json_encode($model->errors);
+     return json_encode($model->errors);
     }
+  }
+
+  public function actionDelete()
+  {
+    $model = new TaskModel($_POST);
+    $result = $model->deleteTask();
+    echo json_encode($result);
   }
     
 }

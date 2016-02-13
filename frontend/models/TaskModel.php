@@ -44,6 +44,7 @@ class TaskModel extends Model
       'active'  => $this->active,
       'date'    => date('Y-m-d H:i:s'),
     ])->execute();
+    return $data;
   }
 
   public function changeTask()
@@ -54,6 +55,13 @@ class TaskModel extends Model
       'active'  => $this->active,
       'date'    => date('Y-m-d H:i:s'),
     ],  "id = $this->id")->execute();
+    return $data;
+  }
+
+  public function deleteTask()
+  {
+    $data = Yii::$app->db->createCommand()->delete('tasks',"id = $this->id")->execute();
+    return $data;
   }
 }
 

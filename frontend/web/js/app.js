@@ -1,9 +1,32 @@
-function changeTask(obj)
+function deleteTask(obj)
+{
+  var id = obj.attr('id');
+  $.ajax
+  ({
+    type: "post",
+    url: "/task/delete",
+    data: {id: id},
+    response: "text",
+    success: function(data)
+    {
+      data = JSON.parse(data);
+      if (data == 1)
+      {
+        showWarning("Удалено навеки!", true);
+      }
+      else
+      {
+        showWarning(data.text, false);
+      }
+    }
+  });
+}
+
+function changeTask(obj, active)
 {
  var title = obj.children(".task-info").children('.title-container').children("input").val();
  var text = obj.children(".task-info").children('.text-container').children("textarea").val();
  var id = obj.attr('id');
- var active = (obj.hasClass("active")) ? 1 : 0;
  $.ajax
   ({
     type: "post",
@@ -15,20 +38,35 @@ function changeTask(obj)
       if (data)
       {
         data = JSON.parse(data);
-        alert(data.text);
+        endOperation(data.text, false);
       }
       else
       {
-        window.location.reload(true);
+        endOperation("Запись изменена.", true);
       }
     }
   });
 }
 
 
-function showWarning(warning)
+function endOperation(warning, success = false)
 {
-  alert(warning);
+  if (success)
+  {
+    $(".warning").removeClass("bg-danger").addClass("bg-success");
+  }
+  else
+  {
+    $(".warning").removeClass("bg-success").addClass("bg-danger");
+  }
+
+  $(".warning").html(warning);
+  $(".warning").show("fast");
+  setTimeout(function(){
+    $(".warning").hide("fast");
+    window.location.reload(true);
+  }, 1000)
+
 }
 
 $(document).ready(function(){
@@ -40,11 +78,21 @@ $(document).ready(function(){
   });
 
   $(".show-hidden").click(function(){
-    $('.non-active').show();
+    if ($(this).hasClass("closed"))
+    {
+      $(this).removeClass("closed").addClass("opened");
+      $('.non-active').show();
+    }
+    else
+    {
+      $(this).removeClass("opened").addClass("closed");
+      $('.non-active').hide();
+    }
+    
     return false;
   })
 
-  $('.change-button').click(function(){
+  $(".change-button").click(function(){
     var div = $(this).parent().parent();
     var id = div.attr("id");
     div.children(".task-info").children('.title-container').children("h3").hide();
@@ -64,6 +112,18 @@ $(document).ready(function(){
 
   $(".submit-button").click(function(){
     var obj = $(this).parent().parent();
-    changeTask(obj);
+    var active = (obj.hasClass("active")) ? 1 : 0;
+    changeTask(obj, active);
+  });
+
+  $(".done-button").click(function(){
+    var obj = $(this).parent().parent();
+    var active = (obj.hasClass("active")) ? 0 : 1;
+    changeTask(obj, active);
+  });
+
+  $(".delete-button").click(function(){
+    var obj = $(this).parent().parent();
+    deleteTask(obj);
   });
 });

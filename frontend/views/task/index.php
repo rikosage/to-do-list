@@ -2,14 +2,14 @@
 
 <div class="row">
   <div class="col-lg-6 col-lg-offset-3 add-container">
-    <form action="/task/post" method = "post">
-      <div class="text-center"><h2>Добавить новое дело</h2></div>
+    <form action="/task/new" method = "post">
+      <div class="text-center"><h2>Новое дело</h2></div>
       <label>Введите название</label>
       <input type="text" required = "required"  name = "title" class = "new-title form-control">
       <label>Введите текст напоминания</label>
       <textarea name = "text" required = "required"  class = "new-text form-control" rows="5"></textarea>
       <button type = "submit" class="btn btn-success add-new-task">Добавить</button>
-      <button class="btn btn-primary show-hidden">Показать выполненые задачи</button>
+      <button class="btn btn-primary show-hidden closed">выполненные задачи</button>
     </form>
   </div>
 </div>
