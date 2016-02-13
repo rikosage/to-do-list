@@ -9,11 +9,22 @@ use Yii;
 class TaskModel extends Model
 {
 
+  //Идентификатор задания
   public $id;
+
+  //Заголовок задачи
   public $title;
+
+  //Текст задачи
   public $text;
+
+  //Активность задачи
   public $active = true;
 
+/**
+ * Правила валидации для данной модели
+ * @return array
+ */
   public function rules()
   {
     return [
@@ -22,6 +33,11 @@ class TaskModel extends Model
     ];
   }
 
+/**
+ * Определяются переменные задачи
+ * @param  array  $data
+ * @return NULL
+ */
   public function __contruct($data = [])
   {
     $this->id     = (isset($data['id'])) ? $data['id'] : NULL;
@@ -30,12 +46,20 @@ class TaskModel extends Model
     $this->active = (isset($data['active'])) ? $data['active'] : true;
   }
 
+/**
+ * Выборка всех существующих задач из БД.
+ * @return Object
+ */
   public function getAllTasks()
   {
     $data = Yii::$app->db->createCommand("SELECT * FROM tasks")->queryAll();
     return $data;
   }
 
+/**
+ * Добавление нового задания
+ * @return boolean или array
+ */
   public function addNewTask()
   {
     $data = Yii::$app->db->createCommand()->insert('tasks',[
@@ -47,6 +71,10 @@ class TaskModel extends Model
     return $data;
   }
 
+/**
+ * Изменение данных задания
+ * @return boolean или array
+ */
   public function changeTask()
   {
     $data = Yii::$app->db->createCommand()->update('tasks', [
@@ -58,6 +86,10 @@ class TaskModel extends Model
     return $data;
   }
 
+  /**
+   * Удаление задания
+   * @return boolean или array
+   */
   public function deleteTask()
   {
     $data = Yii::$app->db->createCommand()->delete('tasks',"id = $this->id")->execute();

@@ -1,3 +1,9 @@
+
+/**
+ * Функция для удаления задания
+ * @param  Object obj Контейнер с конкретным заданием.
+ * @return NULL
+ */
 function deleteTask(obj)
 {
   var id = obj.attr('id');
@@ -22,6 +28,13 @@ function deleteTask(obj)
   });
 }
 
+
+/**
+ * Изменение задания. Вызывается сразу из двух обработчиков
+ * @param  Object obj Контейнер с конкретным заданием
+ * @param  boolean active Активность задания
+ * @return NULL
+ */
 function changeTask(obj, active)
 {
  var title = obj.children(".task-info").children('.title-container').children("input").val();
@@ -48,7 +61,12 @@ function changeTask(obj, active)
   });
 }
 
-
+/**
+ * Вызывается при завершении работы Ajax-запроса.
+ * @param  string  warning Текст сообщения
+ * @param  Boolean success Успешно ли завершился запрос
+ * @return Перезагрузка страницы
+ */
 function endOperation(warning, success = false)
 {
   if (success)
