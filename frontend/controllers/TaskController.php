@@ -32,9 +32,17 @@ class TaskController extends Controller
 
   public function actionPost()
   {
-    $model = new TaskModel;
-    $model->addNewTask($_POST);
-    return Yii::$app->response->redirect(['/']);
+    $model = new TaskModel($_POST);
+    if ($model->validate())
+    {
+      $model->addNewTask();
+      return Yii::$app->response->redirect(['/']);
+    }
+    else
+    {
+      print_r($model->errors);
+    }
+    
   }
 
   public function actionChange()
