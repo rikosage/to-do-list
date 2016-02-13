@@ -38,7 +38,7 @@ class TaskModel extends Model
 
   public function addNewTask()
   {
-    Yii::$app->db->createCommand()->insert('tasks',[
+    $data = Yii::$app->db->createCommand()->insert('tasks',[
       'title'   => $this->title,
       'text'    => $this->text,
       'active'  => $this->active,

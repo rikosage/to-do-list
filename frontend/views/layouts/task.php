@@ -26,6 +26,9 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
+<div class="row">
+  <header class="col-lg-12 text-left"><h1>To Do List</h1></header>
+</div>
 <div class="warning text-center bg-danger"></div>
     <div class="fluid-container">
         <?= $content ?>

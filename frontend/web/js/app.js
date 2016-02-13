@@ -12,11 +12,11 @@ function deleteTask(obj)
       data = JSON.parse(data);
       if (data == 1)
       {
-        showWarning("Удалено навеки!", true);
+        endOperation("Удалено навеки!", true);
       }
       else
       {
-        showWarning(data.text, false);
+        endOperation(data.text, false);
       }
     }
   });
@@ -42,7 +42,7 @@ function changeTask(obj, active)
       }
       else
       {
-        endOperation("Запись изменена.", true);
+        endOperation("Данные изменены.", true);
       }
     }
   });
@@ -74,6 +74,8 @@ $(document).ready(function(){
     if ($(this).hasClass("non-active"))
       {
         $(this).hide();
+        $(this).find(".change-button").hide();
+        $(this).find(".delete-button").hide();
       }
   });
 
