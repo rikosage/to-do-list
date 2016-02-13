@@ -40,14 +40,22 @@ class TaskController extends Controller
     }
     else
     {
-      json_encode($model->errors);
+      print_r($model->errors);
     }
     
   }
 
   public function actionChange()
   {
-    return $this->render('change', $_POST);
+    $model = new TaskModel($_POST);
+    if ($model->validate())
+    {
+     $result = $model->changeTask();
+    }
+    else
+    {
+     echo json_encode($model->errors);
+    }
   }
     
 }

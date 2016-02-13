@@ -23,17 +23,19 @@
         <div class="date-container text-left"><p><?php echo $data[$i]['date']; ?></p></div>
         <div class="title-container text-center">
           <h3><?php echo $data[$i]['title']; ?></h3>
-          <input class = "change-task-title text-center" type="text" value = "<?php echo $data[$i]['title']; ?>">
+          <input class = "change-task-title form-control text-center" required = "required" type="text" value = "<?php echo $data[$i]['title']; ?>">
         </div>
         <div class="text-container">
           <p><?php echo $data[$i]['text']; ?></p>
-          <textarea class = "form-control change-task-text" type="text"><?php echo $data[$i]['text']; ?></textarea>
+          <textarea class = "form-control change-task-text" required = "required" type="text"><?php echo $data[$i]['text']; ?></textarea>
         </div>
       </div>
       <div class="update-container col-lg-3">
-        <button class="btn btn-primary form-control change-button visible">Изменить</button>
+        <button class="btn btn-primary form-control change-button">Изменить</button>
         <button class="btn btn-success form-control done-button"><?php echo $lock; ?></button>
         <button class="btn btn-danger form-control delete-button">Удалить</button>
+        <button class="btn btn-success form-control submit-button">Применить</button>
+        <button class="btn btn-danger form-control cancel">Отменить</button>
       </div>
     </div>
     <?php }; ?>

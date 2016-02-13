@@ -9,8 +9,10 @@ use Yii;
 class TaskModel extends Model
 {
 
+  public $id;
   public $title;
   public $text;
+  public $active = true;
 
   public function rules()
   {
@@ -22,8 +24,10 @@ class TaskModel extends Model
 
   public function __contruct($data = [])
   {
-    $this->title = $data['title'];
-    $this->text  = $data['text'];
+    $this->id     = (isset($data['id'])) ? $data['id'] : NULL;
+    $this->title  = (isset($data['title'])) ? $data['title'] : NULL;
+    $this->text   = (isset($data['text'])) ? $data['text'] : NULL;
+    $this->active = (isset($data['active'])) ? $data['active'] : true;
   }
 
   public function getAllTasks()
@@ -34,12 +38,22 @@ class TaskModel extends Model
 
   public function addNewTask()
   {
-    $data = Yii::$app->db->createCommand()->insert('tasks',[
+    Yii::$app->db->createCommand()->insert('tasks',[
       'title'   => $this->title,
       'text'    => $this->text,
-      'active'  => true,
+      'active'  => $this->active,
       'date'    => date('Y-m-d H:i:s'),
     ])->execute();
+  }
+
+  public function changeTask()
+  {
+    $data = Yii::$app->db->createCommand()->update('tasks', [
+      'title'   => $this->title,
+      'text'    => $this->text,
+      'active'  => $this->active,
+      'date'    => date('Y-m-d H:i:s'),
+    ],  "id = $this->id")->execute();
   }
 }
 

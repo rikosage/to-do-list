@@ -77,3 +77,7 @@ textarea.change-task-text{
   margin-top: 5px;
   float: right;
 }
+
+.submit-button, .cancel{
+  display: none;
+}
